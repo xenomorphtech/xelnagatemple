@@ -7,8 +7,10 @@ defmodule XNT.SSHSFTPWrap do
 
     def read_file(state, path) do
         ssock = XNT.SSock.get_ssock(state)
-        {:ok, data} = :ssh_sftp.read_file(ssock.sftp.channelPid, '#{path}')
-        data
+        case :ssh_sftp.read_file(ssock.sftp.channelPid, '#{path}') do
+            {:ok, data} -> data
+            {:error, :no_such_file} -> ""
+        end
     end
 
     def write_file(state, path, content) do
