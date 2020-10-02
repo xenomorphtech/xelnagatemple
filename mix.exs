@@ -19,6 +19,7 @@ defmodule XNT.MixProject do
     apps = [
       extra_applications: [:logger, :ssl, :ssh]
     ]
+
     if Mix.env() == :prod do
       [{:mod, {XNT.Bakeware, []}} | apps]
     else
@@ -28,7 +29,8 @@ defmodule XNT.MixProject do
 
   defp deps do
     [
-      {:bakeware, git: "https://github.com/spawnfest/bakeware", branch: "main", sparse: "bakeware"},
+      {:bakeware,
+       git: "https://github.com/spawnfest/bakeware", branch: "main", sparse: "bakeware"}
     ]
   end
 
