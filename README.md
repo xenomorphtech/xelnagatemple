@@ -181,7 +181,7 @@ defmodule Init do
     file = String.replace(file, "{{mitigations}}", "#{mitigations}")
     file = String.replace(file, "{{hugepages}}", "#{hugepages}")
 
-    if SFTP.write(state, "/etc/default/grub", file) == :ok do
+    if SFTP.write_if_changed(state, "/etc/default/grub", file) == :ok do
       Color.print({:updating_grub, :reboot_required})
       SFTP.write(state, "/tmp/reboot_required", "")
       {_, 0} = SSH.execute(state, "update-grub")
