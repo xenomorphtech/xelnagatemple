@@ -30,7 +30,7 @@ defmodule XNT.MixProject do
   defp deps do
     [
       {:bakeware,
-       git: "https://github.com/spawnfest/bakeware", branch: "main", sparse: "bakeware"}
+       git: "https://github.com/bake-bake-bake/bakeware", branch: "main"}
     ]
   end
 
