@@ -1,6 +1,34 @@
 ### About
 A xel'naga temple is a xel'naga structure, found on various worlds. Some temples have special functions.
 
+### Example
+```
+
+./xelnagatemple xel_file play_file.ex
+
+Running with xel/xel_file play_file.ex
+Loaded your Xel
+%{hosts: [%{hostname: "s1", ip: "1.2.3.4"}]}
+
+Compiling plays..
+
+
+Loaded play modules [Init]
+
+s1 - {:hostname, :set, "s1"}
+s1 - {:apt, :start}
+s1 - {:apt, :done}
+s1 - {:system_config, :done}
+s1 - {:performance_governer, :set, :performance}
+s1 - {:updating_grub, :reboot_required}
+s1 - {:install_erlang_and_elixir, :start}
+s1 - {:install_erlang_and_elixir, :done}
+s1 - {:install_rust, :start}
+s1 - {:install_rust, :done}
+s1 - {:rebooting}
+s1 - {:done}
+```
+
 
 ### Philosopy
 Scriptable.
@@ -122,7 +150,7 @@ Systemctl
 ```
 
 
-### Example
+### Example2
 ```
 ./xelnagatemple xel_file play_file.ex
 ```
