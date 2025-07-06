@@ -7,7 +7,7 @@ defmodule XNT.MixProject do
     [
       app: @app,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: ">= 1.18.0",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       releases: [{@app, release()}],
@@ -37,9 +37,13 @@ defmodule XNT.MixProject do
   defp release do
     [
       overwrite: true,
-      cookie: "#{@app}_cookie",
       steps: [:assemble, &Bakeware.assemble/1],
-      strip_beams: Mix.env() == :prod
+      strip_beams: Mix.env() == :prod,
+      bakeware: [
+        compression_level: 1,
+        #compression_level: 19,
+        start_command: "start_iex"
+      ],
     ]
   end
 end

@@ -2,12 +2,16 @@ defmodule XNT.Module.SFTP do
   require Record
   Record.defrecord(:file_info, Record.extract(:file_info, from_lib: "kernel/include/file.hrl"))
 
-  def write(state, path, bin) do
-    XNT.SSHSFTPWrap.write_file(state, path, bin)
+  def exists(state, path) do
+    XNT.SSHSFTPWrap.exists(state, path)
   end
 
   def read(state, path) do
     XNT.SSHSFTPWrap.read_file(state, path)
+  end
+
+  def write(state, path, bin) do
+    XNT.SSHSFTPWrap.write_file(state, path, bin)
   end
 
   def permissions(state, path, mode) do
@@ -18,7 +22,7 @@ defmodule XNT.Module.SFTP do
   def write_if_changed(state, path, bin) do
     content = XNT.SSHSFTPWrap.read_file(state, path)
 
-    if content == bin do
+    if content != nil and bin != nil and :erlang.crc32(content) == :erlang.crc32(bin) do
       Color.print({path, "same"})
       nil
     else

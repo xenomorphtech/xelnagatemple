@@ -7,9 +7,17 @@ defmodule XNT.SSHSFTPWrap do
       {:connect_timeout, 15_000}
     ]
 
-    args = if pass, do: [{:password, pass} | args], else: args
+    args = if pass, do: [{:password, '#{pass}'} | args], else: args
     {:ok, channelPid, ref} = :ssh_sftp.start_channel('#{host}', port, args)
     %{ref: ref, channelPid: channelPid}
+  end
+
+  def exists(state, path) do
+    ssh_ctx = state.ssh_ctx
+    case :ssh_sftp.read_file_info(ssh_ctx.sftp.channelPid, '#{path}') do
+      {:ok, _} -> true
+      _ -> false
+    end
   end
 
   def read_file(state, path) do
@@ -23,7 +31,8 @@ defmodule XNT.SSHSFTPWrap do
 
   def write_file(state, path, content) do
     ssh_ctx = state.ssh_ctx
-    :ok = :ssh_sftp.write_file(ssh_ctx.sftp.channelPid, '#{path}', '#{content}')
+    content = if is_binary(content) do :erlang.binary_to_list(content) else '#{content}' end
+    :ok = :ssh_sftp.write_file(ssh_ctx.sftp.channelPid, '#{path}', content)
   end
 
   def write_file_info(state, path, modes) do

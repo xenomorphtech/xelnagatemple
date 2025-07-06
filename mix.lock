@@ -1,4 +1,4 @@
 %{
-  "bakeware": {:git, "https://github.com/bake-bake-bake/bakeware", "934efdb916ed86ffd11ac09207cf2cb64c03eb74", [branch: "main"]},
-  "elixir_make": {:hex, :elixir_make, "0.6.1", "8faa29a5597faba999aeeb72bbb9c91694ef8068f0131192fb199f98d32994ef", [:mix], [], "hexpm", "35d33270680f8d839a4003c3e9f43afb595310a592405a00afc12de4c7f55a18"},
+  "bakeware": {:git, "https://github.com/bake-bake-bake/bakeware", "67d2139fcbb74ebe7604a2cc0471c54ac2e8ac7a", [branch: "main"]},
+  "elixir_make": {:hex, :elixir_make, "0.9.0", "6484b3cd8c0cee58f09f05ecaf1a140a8c97670671a6a0e7ab4dc326c3109726", [:mix], [], "hexpm", "db23d4fd8b757462ad02f8aa73431a426fe6671c80b200d9710caf3d1dd0ffdb"},
 }

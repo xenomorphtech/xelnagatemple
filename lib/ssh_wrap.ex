@@ -7,7 +7,7 @@ defmodule XNT.SSHWrap do
       {:connect_timeout, 15_000}
     ]
 
-    args = if pass, do: [{:password, pass} | args], else: args
+    args = if pass, do: [{:password, '#{pass}'} | args], else: args
     {:ok, ref} = :ssh.connect('#{host}', port, args, 15_000)
     %{ref: ref}
   end
